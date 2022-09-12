@@ -8,7 +8,7 @@
 
       <ul class="lu-der">
         <li>
-          <a href="/">test - link 1</a>
+          <a href="/">test& - link 1</a>
         </li>
         <li>
           <a href="/">test - link 2</a>
