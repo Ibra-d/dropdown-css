@@ -1,5 +1,8 @@
 <template>
-  <div class="nav">
+  <div :class="Class">
+    <div class="before" @click="toggleClass">
+      <i class="fa-regular fa-x"></i>
+    </div>
     <li>
       <p>
         Landings
@@ -57,7 +60,15 @@ export default {
   setup() {
     //
 
-    return {};
+    function toggleClass() {
+      const nav = document.querySelector(".nav");
+      nav.classList.remove("list");
+    }
+
+    return { toggleClass };
+  },
+  props: {
+    Class: String,
   },
 };
 </script>
@@ -68,6 +79,13 @@ export default {
 
 .nav {
   @include allFlex($justify: space-between);
+
+  .before {
+    visibility: hidden;
+    display: none;
+    position: absolute;
+    z-index: -10;
+  }
 
   li {
     @include allFlex($justify: center);
@@ -86,7 +104,8 @@ export default {
       }
     }
 
-    &:hover {
+    &:hover,
+    &:checked {
       .lu-der {
         visibility: visible;
         transform: translateY(0);
@@ -196,6 +215,54 @@ export default {
     &:hover {
       background-color: #005215;
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .nav {
+    translate: 100% 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #578e65;
+    justify-content: center;
+    flex-direction: column;
+    transition: 300ms cubic-bezier(0.86, 0, 0.07, 1);
+
+    .before {
+      visibility: visible;
+      z-index: auto;
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      cursor: pointer;
+      height: 3em;
+      width: 3em;
+      @include allFlex($justify: center);
+      transition: 300ms;
+    }
+
+    // @keyframes shake {
+    //   0% {
+    //     translate: 0rem;
+    //   }
+    //   25% {
+    //     translate: 0.5rem;
+    //   }
+    //   75% {
+    //     translate: -0.5rem;
+    //   }
+    //   100% {
+    //     translate: 0rem;
+    //   }
+    // }
+  }
+
+  .list {
+    translate: 0;
   }
 }
 </style>

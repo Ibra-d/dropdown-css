@@ -12,8 +12,10 @@ body {
   text-align: center;
   color: white;
   background-color: #2c3e50;
+  margin: 0;
 }
 .app {
-  margin: 0 8%;
+  padding: 0 8%;
+  position: relative;
 }
 </style>
